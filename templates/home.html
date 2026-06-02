@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <section class="top">
+        <h1>本日のタスク</h1>
+        <p class="description">
+            タスク管理 Webアプリケーション (※CRUD機能付き)
+        </p>
+    </section>
+
+    <!-- タスク一覧 -->
+    <section class="app-card">
+
+        <div class="card-header">
+
+            <!-- Main -->
+            <div class="contents1">
+
+                <h3>メイン</h3>
+
+                <ul>
+
+                    {% for task in tasks %}
+                        {% if task["category"] == "main" %}
+                        <li>
+                            {{ task["task_time"] }}
+                            {{ task["title"] }}
+
+                                <form
+                                    action="/delete/{{ task['id'] }}"
+                                    method="POST"
+                                    style="display:inline;"
+                                >
+                                    <button type="submit">
+                                        削除
+                                    </button>
+                                </form>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+            <!-- Sub -->
+            <div class="contents2">
+
+                <h3>サブ</h3>
+
+                <ul>
+
+                    {% for task in tasks %}
+                        {% if task["category"] == "sub" %}
+                        <li>
+                            {{ task["task_time"] }}
+                            {{ task["title"] }}
+
+                            <form
+                                action="/delete/{{ task['id'] }}"
+                                method="POST"
+                                style="display:inline;"
+                            >
+                                <button type="submit">
+                                    削除
+                                </button>
+                            </form>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- タスク追加 -->
+    <section class="app-card">
+
+        <form action="/home" method="POST" class="task-form">
+
+            <input
+                type="text"
+                name="title"
+                placeholder="タスク名"
+                required
+                style="width: 300px; font-size: 18px; text-align: center;"
+            >
+
+            <label for="appt">開始時間選択:</label>
+
+            <input
+                type="time"
+                id="appt"
+                name="task_time"
+                value="00:00"
+            >
+
+            <select name="category">
+
+                <option value="main">
+                    Main
+                </option>
+
+                <option value="sub">
+                    Sub
+                </option>
+
+            </select>
+
+            <button type="submit">
+                追加
+            </button>
+
+        </form>
+
+    </section>
+
+    <a href="/logout" class="logout">ログアウト</a>
+
+</div>
+</body>
+</html>

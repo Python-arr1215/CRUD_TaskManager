@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登録</title>
+
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <section class="top">
+            <h1>新規登録</h1>
+            <p class="description">
+                タスク管理 Webアプリケーション (※CRUD機能付き)</p>
+        </section>
+        <section class="app-card">
+            <div class="card-header">
+                <h2>登録</h2>
+            </div>
+            <div class="box">
+                <form action="{{ url_for('register') }}" method="post">
+                    <label for="username">ユーザー名:</label><br>
+                    <input type="text" id="username" name="username" required><br>
+                    <label for="password">パスワード:</label><br>
+                    <input type="password" id="password" name="password" placeholder="6文字以上で入力してください" minlength="6" required>
+                    <span id="view">
+                        <!-- 目のアイコン -->
+                        <i class="far fa-eye-slash"></i>
+                    </span><br><br>
+                    <input type="submit" value="登録">
+                </form><br>
+            </div>
+            <a href="{{ url_for('home') }}">ログインはこちら</a>
+        </section>
+
+        <script>
+            const pass = document.getElementById("password");
+            const view = document.getElementById("view");
+
+            view.addEventListener("click", () => {
+                if(pass.type === "password"){
+                    pass.type = "text";
+                    view.innerHTML = '<i class="fa-regular fa-eye"></i>';
+                }else{
+                    pass.type = "password";
+                    view.innerHTML = '<i class="fa-regular fa-eye-slash"></i>';
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>
