@@ -96,7 +96,7 @@ def Read(user_id):
     cur = conn.cursor()
 
     cur.execute(
-        "SELECT * FROM tasks WHERE user_id=? ORDER BY task_time DESC",
+        "SELECT * FROM tasks WHERE user_id=? ORDER BY task_time ASC",
         (user_id,)
     )
 
