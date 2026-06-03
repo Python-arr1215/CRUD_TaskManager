@@ -7,8 +7,8 @@ FlaskとSQLiteを用いて開発したタスク管理Webアプリです。
 
 ## テストアカウント
 
-- ユーザーname: arr
-- パスワード: arrarr
+- ユーザーname: 　　arr
+- パスワード: 　　arrarr
 
 ## 概要
 
